@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garfbackend
+  labels:
+    app: garfbackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: garfbackend
+  # pod spec begins here
+  template:
+    metadata:
+      labels:
+        app: garfbackend
+    spec:
+      containers:
+        - name: garfbackend
+          image: registry.digitalocean.com/garfdetector/garfbackend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
